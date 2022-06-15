@@ -3,7 +3,7 @@
 API Automation Test is RestAssured based Cucumber framework to perform API testing. 
 
 Getting Started
-1. git clone [https://github.com/sadabnepal/APIRestasssuredBDDFramework.git"](https://github.com/sparky0268/ApiTestingFramework.git)
+1. git clone (https://github.com/sparky0268/ApiTestingFramework.git)
 2. Navigate to ApiTestingFramework
 In terminal from root project folder ApiTestingFramework, run below commands as required
 
