@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.assessment</groupId>
+	<artifactId>restassured</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>restassured</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<junit.version>4.13.2</junit.version>
+		<restassured.version>5.1.0</restassured.version>
+		<cucumber.version>7.3.4</cucumber.version>
+		<awaitility.version>4.2.0</awaitility.version>
+		<hamcrest.version>2.2</hamcrest.version>
+		<surefire.version>3.0.0-M7</surefire.version>
+		<org.json.version>20220320</org.json.version>
+		<simple.json.version>1.1.1</simple.json.version>
+		<java.version>1.8</java.version>
+		<compiler.version>3.5.1</compiler.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${restassured.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.awaitility</groupId>
+			<artifactId>awaitility</artifactId>
+			<version>${awaitility.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest</artifactId>
+			<version>${hamcrest.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>${org.json.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>${simple.json.version}</version>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>DEV</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>DEV</value>
+				</property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<profile.env.url>http://restapi.adequateshop.com</profile.env.url>
+				<profile.env.download>https://github.com/eemustafasahin/</profile.env.download>
+			</properties>
+		</profile>
+		<profile>
+			<id>QA</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>QA</value>
+				</property>
+			</activation>
+			<properties>
+				<profile.env.url>http://restapi.adequateshop.com</profile.env.url>
+				<profile.env.download>https://github.com/eemustafasahin/</profile.env.download>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${surefire.version}</version>
+				<configuration>
+					<systemPropertyVariables>
+						<sys.env.url>${profile.env.url}</sys.env.url>
+						<sys.env.download>${profile.env.download}</sys.env.download>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
